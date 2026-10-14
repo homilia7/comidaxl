@@ -15,6 +15,11 @@ Cualquier funcionalidad registrada aquí está blindada: ninguna IA puede elimin
 
 ## 📦 REGISTRO DE CAMBIOS Y VERSIONES
 
+### Versión 1.3.0 — Ingredientes Flotantes en Esquinas y Efectos de Texto Letra por Letra
+- **Fecha:** 2026-10-13
+- **Ingredientes Flotantes de Foodies:** Integración de los recortes transparentes exactos de Foodies (hoja de albahaca, rodaja de tomate jugoso, ají rojo picante y especias) flotando en las esquinas con `@keyframes floatBob` y `@keyframes floatBobReverse`.
+- **Efecto de Texto Letra por Letra (SplitText):** Animación carácter por carácter inspirada en GSAP SplitText con caída tridimensional (`rotateX(-60deg) -> 0deg`), desenfoque gradual y escalonamiento dinámico de 35ms en los títulos del Hero y del Menú.
+
 ### Versión 1.2.0 — Animaciones Completas de Foodies (Preloader, HeroSlider & Scroll Reveal)
 - **Fecha:** 2026-10-13
 - **Preloader de Entrada:** Pantalla de carga animada con spinner neón, logotipo y transición de apertura suave hacia la web.

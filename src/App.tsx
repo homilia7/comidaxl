@@ -20,6 +20,8 @@ import { Preloader } from './components/common/Preloader';
 import { CustomCursor } from './components/common/CustomCursor';
 import { BackToTop } from './components/common/BackToTop';
 import { Toast, ToastMessage } from './components/common/Toast';
+import { FloatingIngredients } from './components/common/FloatingIngredients';
+import { SplitText } from './components/common/SplitText';
 
 export function App() {
   // Initialize scroll reveal animations (WOW.js style)
@@ -97,34 +99,37 @@ export function App() {
   };
 
   return (
-    <div className="min-h-screen flex flex-col bg-[#0b0c10] text-[#f5f5f7]">
+    <div className="min-h-screen flex flex-col bg-[#0b0c10] text-[#f5f5f7] relative">
       {/* 1. Foodies Signature Preloader Screen */}
       <Preloader />
 
       {/* 2. Custom Interactive Smooth Cursor (Foodies style) */}
       <CustomCursor />
 
-      {/* 3. Header & Sticky Nav with Animated Ticker */}
+      {/* 3. Floating Ingredients in the Corners (Foodies Shapes) */}
+      <FloatingIngredients />
+
+      {/* 4. Header & Sticky Nav with Animated Ticker */}
       <Navbar
         totalItems={totalItems}
         subtotal={subtotal}
         onOpenCart={() => setIsCartOpen(true)}
       />
 
-      {/* 4. Interactive Hero Slider with Swiper Controls & Shapes */}
+      {/* 5. Interactive Hero Slider with SplitText & Controls */}
       <HeroSlider onExploreMenu={scrollToMenu} />
 
-      {/* 5. Quick Delivery Strip */}
+      {/* 6. Quick Delivery Strip */}
       <DeliveryChannels />
 
-      {/* 6. Menú Principal Section with Scroll Reveal */}
-      <main id="menu" className="py-16 sm:py-24 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
+      {/* 7. Menú Principal Section with Scroll Reveal & SplitText */}
+      <main id="menu" className="py-16 sm:py-24 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full relative z-10">
         <div className="text-center max-w-2xl mx-auto mb-10 space-y-3 reveal-on-scroll reveal-hidden">
           <span className="text-xs font-black tracking-widest uppercase text-[#ff5500]">
             Elige tu Banquete
           </span>
           <h2 className="text-3xl sm:text-5xl font-extrabold text-white uppercase tracking-tight">
-            MENÚ CALLEJERO <span className="text-[#ff5500]">XL</span>
+            MENÚ CALLEJERO <span className="text-[#ff5500]"><SplitText text="XL" staggerDelay={60} /></span>
           </h2>
           <p className="text-sm text-gray-400">
             Platos preparados al momento con ingredientes frescos. Personaliza tus hamburguesas con extras de queso y tocineta.
@@ -153,22 +158,22 @@ export function App() {
         </div>
       </main>
 
-      {/* 7. Experiencia & Luces Neón */}
+      {/* 8. Experiencia & Luces Neón */}
       <ExperienceSection />
 
-      {/* 8. Sucursales & Waze */}
+      {/* 9. Sucursales & Waze */}
       <LocationsSection />
 
-      {/* 9. Pie de Página */}
+      {/* 10. Pie de Página */}
       <Footer />
 
-      {/* 10. Back to Top Floating Button */}
+      {/* 11. Back to Top Floating Button */}
       <BackToTop />
 
-      {/* 11. Sonner-Style Toast Notification */}
+      {/* 12. Sonner-Style Toast Notification */}
       <Toast toast={toast} onClose={() => setToast(null)} />
 
-      {/* 12. Modals & Drawers with Spring Physics */}
+      {/* 13. Modals & Drawers with Spring Physics */}
       <ProductModal
         product={customizingProduct}
         onClose={() => setCustomizingProduct(null)}

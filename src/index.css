@@ -23,27 +23,38 @@
    ANIMATIONS EXACTLY FROM WOWTHEME7 FOODIES & WOW.JS
    ========================================================== */
 
-/* Preloader Keyframes */
-@keyframes preloaderSpin {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
+/* SplitText letter-by-letter keyframe */
+@keyframes letterDropIn {
+  0% {
+    opacity: 0;
+    transform: translateY(32px) rotateX(-60deg) scale(0.9);
+    filter: blur(2px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) rotateX(0deg) scale(1);
+    filter: blur(0px);
+  }
 }
 
-@keyframes preloaderPulse {
-  0%, 100% { transform: scale(0.92); opacity: 0.7; }
-  50% { transform: scale(1.08); opacity: 1; }
+.split-char {
+  display: inline-block;
+  opacity: 0;
+  animation: letterDropIn 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  will-change: transform, opacity, filter;
+  transform-origin: 50% 100%;
 }
 
-/* Floating Shapes (float-bob / up-down) */
+/* Floating Shapes (Foodies float-bob / up-down) */
 @keyframes floatBob {
   0% { transform: translateY(0px) rotate(0deg); }
-  50% { transform: translateY(-16px) rotate(2deg); }
+  50% { transform: translateY(-18px) rotate(3deg); }
   100% { transform: translateY(0px) rotate(0deg); }
 }
 
 @keyframes floatBobReverse {
   0% { transform: translateY(0px) rotate(0deg); }
-  50% { transform: translateY(14px) rotate(-2deg); }
+  50% { transform: translateY(16px) rotate(-3deg); }
   100% { transform: translateY(0px) rotate(0deg); }
 }
 
@@ -65,58 +76,26 @@
   100% { transform: scale(1); }
 }
 
-/* WOW.js fadeInUp simulation */
-@keyframes wowFadeInUp {
-  from {
-    opacity: 0;
-    transform: translateY(32px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+/* Scroll reveal reveal states */
+.reveal-hidden {
+  opacity: 0;
+  transform: translateY(36px);
+  transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1), transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, transform;
 }
 
-@keyframes wowFadeInLeft {
-  from {
-    opacity: 0;
-    transform: translateX(-35px);
-  }
-  to {
-    opacity: 1;
-    transform: translateX(0);
-  }
+.reveal-visible {
+  opacity: 1 !important;
+  transform: translateY(0) !important;
 }
 
-@keyframes wowFadeInRight {
-  from {
-    opacity: 0;
-    transform: translateX(35px);
-  }
-  to {
-    opacity: 1;
-    transform: translateX(0);
-  }
-}
-
-@keyframes wowScaleUp {
-  from {
-    opacity: 0;
-    transform: scale(0.92);
-  }
-  to {
-    opacity: 1;
-    transform: scale(1);
-  }
-}
-
-/* Utility animation classes */
+/* Animation utility classes */
 .animate-float-bob {
   animation: floatBob 5s ease-in-out infinite;
 }
 
 .animate-float-bob-rev {
-  animation: floatBobReverse 5.5s ease-in-out infinite;
+  animation: floatBobReverse 5.8s ease-in-out infinite;
 }
 
 .animate-spin-slow {
@@ -134,19 +113,6 @@
 
 .animate-badge-pop {
   animation: badgePop 0.35s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-}
-
-/* Scroll reveal reveal states */
-.reveal-hidden {
-  opacity: 0;
-  transform: translateY(36px);
-  transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1), transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
-  will-change: opacity, transform;
-}
-
-.reveal-visible {
-  opacity: 1 !important;
-  transform: translateY(0) !important;
 }
 
 /* Foodies exact mouse cursor */

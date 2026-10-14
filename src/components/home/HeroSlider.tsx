@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { ArrowRight, Flame, ChevronLeft, ChevronRight, Scale, Clock, Sparkles } from 'lucide-react';
 import { formatCRC } from '../../hooks/useWhatsAppOrder';
+import { SplitText } from '../common/SplitText';
 
 interface HeroSliderProps {
   onExploreMenu: () => void;
@@ -10,7 +11,7 @@ const SLIDES = [
   {
     badge: 'La Más Vendida • Porción 650g',
     title: 'SHOCK BURGER VOLCÁN XL',
-    highlight: 'VOLCÁN XL',
+    highlight: 'MONUMENTALES',
     description: 'Triple queso cheddar fundido en mesa, doble carne smash artesanal, tocineta crujiente en pan brioche a la mantequilla.',
     price: 7900,
     weight: '650g+',
@@ -19,7 +20,7 @@ const SLIDES = [
   {
     badge: 'Festín Para 4 Personas • 1.5 kg',
     title: 'SURTIDO MONUMENTAL CALLEJERO',
-    highlight: 'MONUMENTAL',
+    highlight: 'EXTREMAS',
     description: 'Mini burgers smash, chicharrones de cerdo crujientes, alitas BBQ, aros de cebolla y papas rebosadas de queso.',
     price: 18900,
     weight: '1.5 kg',
@@ -50,22 +51,26 @@ export function HeroSlider({ onExploreMenu }: HeroSliderProps) {
 
   return (
     <section className="relative overflow-hidden pt-8 pb-16 lg:py-20 bg-gradient-to-b from-[#111418] via-[#0d0f12] to-[#0d0f12]">
-      {/* Floating Background Shapes (Foodies Parallax) */}
+      {/* Background Shapes */}
       <div className="absolute top-12 left-10 w-24 h-24 rounded-full bg-[#ff5500]/15 blur-2xl animate-float-bob pointer-events-none" />
       <div className="absolute bottom-16 right-16 w-36 h-36 rounded-full bg-yellow-500/10 blur-3xl animate-float-bob-rev pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center min-h-[520px]">
           
-          {/* Left: Text Details with Smooth Transitions */}
-          <div key={`text-${current}`} className="lg:col-span-7 space-y-6 text-center lg:text-left animate-fade-up">
-            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#ff5500]/15 border border-[#ff5500]/40 text-[#ff7733] text-xs font-black uppercase tracking-wider">
-              <Flame className="w-4 h-4 text-[#ff5500] animate-bounce" />
+          {/* Left: Text Details with SplitText Letter-by-Letter Animation */}
+          <div key={`text-${current}`} className="lg:col-span-7 space-y-6 text-center lg:text-left">
+            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#ff5500]/15 border border-[#ff5500]/40 text-[#ff7733] text-xs font-black uppercase tracking-wider animate-bounce">
+              <Flame className="w-4 h-4 text-[#ff5500]" />
               {slide.badge}
             </div>
 
             <h1 className="text-4xl sm:text-6xl xl:text-7xl font-extrabold text-white tracking-tight uppercase leading-[0.95]">
-              PORCIONES <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#ff5500] via-[#ff8800] to-yellow-400">{slide.highlight}</span> PARA COMPARTIR
+              PORCIONES{' '}
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#ff5500] via-[#ff8800] to-yellow-400">
+                <SplitText key={`split-${current}`} text={slide.highlight} staggerDelay={35} />
+              </span>{' '}
+              PARA COMPARTIR
             </h1>
 
             <p className="text-base sm:text-lg text-gray-300 max-w-2xl font-normal leading-relaxed mx-auto lg:mx-0">
@@ -129,7 +134,7 @@ export function HeroSlider({ onExploreMenu }: HeroSliderProps) {
             </div>
 
             {/* Slide Image Box */}
-            <div key={`img-${current}`} className="relative rounded-3xl overflow-hidden border-2 border-white/10 shadow-2xl bg-[#161a20] group animate-fade-up">
+            <div key={`img-${current}`} className="relative rounded-3xl overflow-hidden border-2 border-white/10 shadow-2xl bg-[#161a20] group">
               <img
                 src={slide.image}
                 alt={slide.title}
@@ -138,7 +143,7 @@ export function HeroSlider({ onExploreMenu }: HeroSliderProps) {
               <div className="absolute inset-0 bg-gradient-to-t from-[#0d0f12] via-transparent to-transparent opacity-90" />
               
               {/* Floating Pill Card */}
-              <div className="absolute bottom-6 left-6 right-6 p-4 rounded-2xl bg-[#12151a]/95 backdrop-blur-md border border-white/10 flex items-center justify-between">
+              <div className="absolute bottom-6 left-6 right-6 p-4 rounded-2xl bg-[#12151a]/95 backdrop-blur-md border border-white/10 flex items-center justify-between animate-float-bob">
                 <div>
                   <span className="text-[11px] font-black uppercase text-[#ff5500] tracking-wider">
                     Especial Callejero
@@ -152,14 +157,14 @@ export function HeroSlider({ onExploreMenu }: HeroSliderProps) {
               </div>
             </div>
 
-            {/* Slider Navigation Controls (Foodies array-prev & array-next) */}
+            {/* Slider Navigation Controls */}
             <div className="flex items-center justify-between mt-4 px-2">
               <div className="flex items-center gap-2">
                 {SLIDES.map((_, i) => (
                   <button
                     key={i}
                     onClick={() => setCurrent(i)}
-                    className={`h-2.5 rounded-full transition-all duration-300 ${
+                    className={`h-2.5 rounded-full transition-all duration-300 cursor-pointer ${
                       current === i ? 'w-8 bg-[#ff5500]' : 'w-2.5 bg-white/20 hover:bg-white/40'
                     }`}
                     aria-label={`Ir al slide ${i + 1}`}
@@ -170,14 +175,14 @@ export function HeroSlider({ onExploreMenu }: HeroSliderProps) {
               <div className="flex items-center gap-2">
                 <button
                   onClick={() => setCurrent((prev) => (prev - 1 + SLIDES.length) % SLIDES.length)}
-                  className="p-2.5 rounded-xl bg-white/5 hover:bg-[#ff5500] text-gray-300 hover:text-white border border-white/10 transition-all active:scale-90"
+                  className="p-2.5 rounded-xl bg-white/5 hover:bg-[#ff5500] text-gray-300 hover:text-white border border-white/10 transition-all active:scale-90 cursor-pointer"
                   aria-label="Anterior"
                 >
                   <ChevronLeft className="w-5 h-5" />
                 </button>
                 <button
                   onClick={() => setCurrent((prev) => (prev + 1) % SLIDES.length)}
-                  className="p-2.5 rounded-xl bg-white/5 hover:bg-[#ff5500] text-gray-300 hover:text-white border border-white/10 transition-all active:scale-90"
+                  className="p-2.5 rounded-xl bg-white/5 hover:bg-[#ff5500] text-gray-300 hover:text-white border border-white/10 transition-all active:scale-90 cursor-pointer"
                   aria-label="Siguiente"
                 >
                   <ChevronRight className="w-5 h-5" />
