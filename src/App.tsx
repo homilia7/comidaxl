@@ -15,6 +15,10 @@ import { ExperienceSection } from './components/home/ExperienceSection';
 import { LocationsSection } from './components/locations/LocationsSection';
 import { Footer } from './components/layout/Footer';
 
+import { CustomCursor } from './components/common/CustomCursor';
+import { BackToTop } from './components/common/BackToTop';
+import { Toast, ToastMessage } from './components/common/Toast';
+
 export function App() {
   const {
     items,
@@ -31,6 +35,7 @@ export function App() {
   const [activeCategory, setActiveCategory] = useState<ProductCategory>('todos');
   const [customizingProduct, setCustomizingProduct] = useState<Product | null>(null);
   const [isCheckoutOpen, setIsCheckoutOpen] = useState(false);
+  const [toast, setToast] = useState<ToastMessage | null>(null);
 
   // Filter products by active category
   const filteredProducts = useMemo(() => {
@@ -61,16 +66,44 @@ export function App() {
     el?.scrollIntoView({ behavior: 'smooth' });
   };
 
+  const handleQuickAdd = (product: Product) => {
+    addToCart(product, 1);
+    setToast({
+      id: `${product.id}_${Date.now()}`,
+      title: '¡Agregado a tu Pedido!',
+      description: `${product.name} listo en el carrito.`,
+      image: product.image,
+    });
+  };
+
+  const handleCustomizedAdd = (
+    product: Product,
+    quantity: number,
+    selectedExtras: any[],
+    notes?: string
+  ) => {
+    addToCart(product, quantity, selectedExtras, notes);
+    setToast({
+      id: `${product.id}_${Date.now()}`,
+      title: '¡Personalizado y Agregado!',
+      description: `${quantity}x ${product.name} con extras listo en el carrito.`,
+      image: product.image,
+    });
+  };
+
   return (
     <div className="min-h-screen flex flex-col bg-[#0b0c10] text-[#f5f5f7]">
-      {/* Header & Sticky Nav */}
+      {/* Custom Interactive Smooth Cursor (Foodies style) */}
+      <CustomCursor />
+
+      {/* Header & Sticky Nav with Animated Ticker */}
       <Navbar
         totalItems={totalItems}
         subtotal={subtotal}
         onOpenCart={() => setIsCartOpen(true)}
       />
 
-      {/* Hero Showcase */}
+      {/* Hero Showcase with Floating Badges & Rotating Seal */}
       <HeroBanner onExploreMenu={scrollToMenu} />
 
       {/* Quick Channels Strip */}
@@ -90,7 +123,7 @@ export function App() {
           </p>
         </div>
 
-        {/* Filter Bar */}
+        {/* Filter Bar with Spring Physics */}
         <div className="mb-10">
           <CategoryFilters
             activeCategory={activeCategory}
@@ -99,14 +132,14 @@ export function App() {
           />
         </div>
 
-        {/* Products Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
+        {/* Products Grid with Animated Entry */}
+        <div key={activeCategory} className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 animate-fade-up">
           {filteredProducts.map((product) => (
             <ProductCard
               key={product.id}
               product={product}
               onOpenCustomize={(p) => setCustomizingProduct(p)}
-              onQuickAdd={(p) => addToCart(p, 1)}
+              onQuickAdd={handleQuickAdd}
             />
           ))}
         </div>
@@ -121,11 +154,17 @@ export function App() {
       {/* Pie de Página */}
       <Footer />
 
-      {/* Modals & Drawers */}
+      {/* Back to Top Floating Button */}
+      <BackToTop />
+
+      {/* Sonner-Style Toast Notification */}
+      <Toast toast={toast} onClose={() => setToast(null)} />
+
+      {/* Modals & Drawers with Spring Physics */}
       <ProductModal
         product={customizingProduct}
         onClose={() => setCustomizingProduct(null)}
-        onAddToCart={addToCart}
+        onAddToCart={handleCustomizedAdd}
       />
 
       <CartDrawer

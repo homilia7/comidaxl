@@ -32,17 +32,17 @@ export function CategoryFilters({
           <button
             key={cat.id}
             onClick={() => onSelectCategory(cat.id)}
-            className={`flex items-center gap-2.5 px-5 py-3 rounded-2xl font-bold text-xs sm:text-sm whitespace-nowrap transition-all duration-200 cursor-pointer ${
+            className={`flex items-center gap-2.5 px-5 py-3 rounded-2xl font-bold text-xs sm:text-sm whitespace-nowrap transition-all duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] active:scale-95 cursor-pointer ${
               isActive
-                ? 'bg-[#ff5500] text-white shadow-lg shadow-[#ff5500]/30 scale-[1.02]'
-                : 'bg-[#151920] text-gray-300 hover:text-white hover:bg-[#1f242d] border border-white/5'
+                ? 'bg-[#ff5500] text-white shadow-xl shadow-[#ff5500]/30 scale-[1.03] ring-2 ring-[#ff5500]/50'
+                : 'bg-[#151920] text-gray-300 hover:text-white hover:bg-[#1f242d] hover:scale-[1.01] border border-white/5'
             }`}
           >
-            <Icon className={`w-4 h-4 ${isActive ? 'text-white' : 'text-[#ff5500]'}`} />
+            <Icon className={`w-4 h-4 transition-transform duration-300 ${isActive ? 'text-white scale-110' : 'text-[#ff5500]'}`} />
             <span>{cat.label}</span>
             <span
-              className={`text-[11px] px-2 py-0.5 rounded-full font-bold ${
-                isActive ? 'bg-white/20 text-white' : 'bg-white/5 text-gray-400'
+              className={`text-[11px] px-2 py-0.5 rounded-full font-bold transition-colors ${
+                isActive ? 'bg-white/25 text-white' : 'bg-white/5 text-gray-400'
               }`}
             >
               {count}
