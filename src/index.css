@@ -1,0 +1,53 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    --font-sans: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+    --font-heading: 'Bebas Neue', sans-serif;
+  }
+
+  body {
+    font-family: var(--font-sans);
+    background-color: #0d0f12;
+    color: #f1f3f5;
+    overflow-x: hidden;
+  }
+
+  h1, h2, h3, .font-heading {
+    font-family: var(--font-heading);
+    letter-spacing: 0.04em;
+  }
+}
+
+/* Custom glow utilities */
+.glow-neon-orange {
+  box-shadow: 0 0 25px rgba(255, 85, 0, 0.45), 0 0 50px rgba(255, 85, 0, 0.2);
+}
+
+.glow-neon-yellow {
+  box-shadow: 0 0 25px rgba(255, 183, 3, 0.4), 0 0 50px rgba(255, 183, 3, 0.15);
+}
+
+.text-glow-orange {
+  text-shadow: 0 0 16px rgba(255, 85, 0, 0.6);
+}
+
+.neon-border {
+  border: 1px solid rgba(255, 85, 0, 0.35);
+  box-shadow: inset 0 0 15px rgba(255, 85, 0, 0.1), 0 0 15px rgba(255, 85, 0, 0.15);
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #111418;
+}
+::-webkit-scrollbar-thumb {
+  background: #2a2e35;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #ff5500;
+}
