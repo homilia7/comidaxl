@@ -15,6 +15,10 @@ Cualquier funcionalidad registrada aquí está blindada: ninguna IA puede elimin
 
 ## 📦 REGISTRO DE CAMBIOS Y VERSIONES
 
+### Versión 1.3.1 — Optimización de Nitidez del Chile Flotante (HD 450x406px)
+- **Fecha:** 2026-10-14
+- **Chile Picante de Alta Definición:** Sustitución del recorte previo por el activo oficial en alta resolución de Foodies (`chili.png`, 450x406px, 35.5 KB) con renderizado 100% nítido, contraste mejorado y sombra tridimensional sin desenfoque.
+
 ### Versión 1.3.0 — Ingredientes Flotantes en Esquinas y Efectos de Texto Letra por Letra
 - **Fecha:** 2026-10-13
 - **Ingredientes Flotantes de Foodies:** Integración de los recortes transparentes exactos de Foodies (hoja de albahaca, rodaja de tomate jugoso, ají rojo picante y especias) flotando en las esquinas con `@keyframes floatBob` y `@keyframes floatBobReverse`.
