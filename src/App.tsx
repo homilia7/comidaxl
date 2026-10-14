@@ -2,9 +2,10 @@ import { useState, useMemo } from 'react';
 import { PRODUCTS } from './data/menuData';
 import { Product, ProductCategory } from './types/product';
 import { useCart } from './hooks/useCart';
+import { useScrollReveal } from './hooks/useScrollReveal';
 
 import { Navbar } from './components/layout/Navbar';
-import { HeroBanner } from './components/home/HeroBanner';
+import { HeroSlider } from './components/home/HeroSlider';
 import { DeliveryChannels } from './components/home/DeliveryChannels';
 import { CategoryFilters } from './components/menu/CategoryFilters';
 import { ProductCard } from './components/menu/ProductCard';
@@ -15,11 +16,15 @@ import { ExperienceSection } from './components/home/ExperienceSection';
 import { LocationsSection } from './components/locations/LocationsSection';
 import { Footer } from './components/layout/Footer';
 
+import { Preloader } from './components/common/Preloader';
 import { CustomCursor } from './components/common/CustomCursor';
 import { BackToTop } from './components/common/BackToTop';
 import { Toast, ToastMessage } from './components/common/Toast';
 
 export function App() {
+  // Initialize scroll reveal animations (WOW.js style)
+  useScrollReveal();
+
   const {
     items,
     isOpen: isCartOpen,
@@ -93,25 +98,28 @@ export function App() {
 
   return (
     <div className="min-h-screen flex flex-col bg-[#0b0c10] text-[#f5f5f7]">
-      {/* Custom Interactive Smooth Cursor (Foodies style) */}
+      {/* 1. Foodies Signature Preloader Screen */}
+      <Preloader />
+
+      {/* 2. Custom Interactive Smooth Cursor (Foodies style) */}
       <CustomCursor />
 
-      {/* Header & Sticky Nav with Animated Ticker */}
+      {/* 3. Header & Sticky Nav with Animated Ticker */}
       <Navbar
         totalItems={totalItems}
         subtotal={subtotal}
         onOpenCart={() => setIsCartOpen(true)}
       />
 
-      {/* Hero Showcase with Floating Badges & Rotating Seal */}
-      <HeroBanner onExploreMenu={scrollToMenu} />
+      {/* 4. Interactive Hero Slider with Swiper Controls & Shapes */}
+      <HeroSlider onExploreMenu={scrollToMenu} />
 
-      {/* Quick Channels Strip */}
+      {/* 5. Quick Delivery Strip */}
       <DeliveryChannels />
 
-      {/* Menú Principal Section */}
+      {/* 6. Menú Principal Section with Scroll Reveal */}
       <main id="menu" className="py-16 sm:py-24 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
-        <div className="text-center max-w-2xl mx-auto mb-10 space-y-3">
+        <div className="text-center max-w-2xl mx-auto mb-10 space-y-3 reveal-on-scroll reveal-hidden">
           <span className="text-xs font-black tracking-widest uppercase text-[#ff5500]">
             Elige tu Banquete
           </span>
@@ -124,7 +132,7 @@ export function App() {
         </div>
 
         {/* Filter Bar with Spring Physics */}
-        <div className="mb-10">
+        <div className="mb-10 reveal-on-scroll reveal-hidden">
           <CategoryFilters
             activeCategory={activeCategory}
             onSelectCategory={setActiveCategory}
@@ -133,7 +141,7 @@ export function App() {
         </div>
 
         {/* Products Grid with Animated Entry */}
-        <div key={activeCategory} className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 animate-fade-up">
+        <div key={activeCategory} className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
           {filteredProducts.map((product) => (
             <ProductCard
               key={product.id}
@@ -145,22 +153,22 @@ export function App() {
         </div>
       </main>
 
-      {/* Experiencia & Luces Neón */}
+      {/* 7. Experiencia & Luces Neón */}
       <ExperienceSection />
 
-      {/* Sucursales & Waze */}
+      {/* 8. Sucursales & Waze */}
       <LocationsSection />
 
-      {/* Pie de Página */}
+      {/* 9. Pie de Página */}
       <Footer />
 
-      {/* Back to Top Floating Button */}
+      {/* 10. Back to Top Floating Button */}
       <BackToTop />
 
-      {/* Sonner-Style Toast Notification */}
+      {/* 11. Sonner-Style Toast Notification */}
       <Toast toast={toast} onClose={() => setToast(null)} />
 
-      {/* Modals & Drawers with Spring Physics */}
+      {/* 12. Modals & Drawers with Spring Physics */}
       <ProductModal
         product={customizingProduct}
         onClose={() => setCustomizingProduct(null)}

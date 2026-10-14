@@ -12,7 +12,7 @@ export function ProductCard({ product, onOpenCustomize, onQuickAdd }: ProductCar
   const hasExtras = product.availableExtras && product.availableExtras.length > 0;
 
   return (
-    <div className="bg-[#141820] rounded-3xl overflow-hidden border border-white/5 hover:border-[#ff5500]/50 transition-all duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] flex flex-col group hover:-translate-y-2 hover:shadow-2xl hover:shadow-[#ff5500]/15 animate-fade-up">
+    <div className="bg-[#141820] rounded-3xl overflow-hidden border border-white/5 hover:border-[#ff5500]/60 transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] flex flex-col group hover:-translate-y-2.5 hover:shadow-2xl hover:shadow-[#ff5500]/20 reveal-on-scroll reveal-hidden">
       {/* Product Image & Badges with smooth zoom */}
       <div className="relative aspect-[4/3] overflow-hidden bg-black/40">
         <img
@@ -21,7 +21,7 @@ export function ProductCard({ product, onOpenCustomize, onQuickAdd }: ProductCar
           className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700 ease-out"
           loading="lazy"
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-[#141820] via-transparent to-transparent opacity-80" />
+        <div className="absolute inset-0 bg-gradient-to-t from-[#141820] via-transparent to-transparent opacity-85" />
 
         {/* Top Badges with subtle bounce */}
         <div className="absolute top-3 left-3 right-3 flex items-center justify-between pointer-events-none">

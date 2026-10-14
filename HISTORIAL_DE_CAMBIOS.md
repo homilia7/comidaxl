@@ -15,6 +15,14 @@ Cualquier funcionalidad registrada aquí está blindada: ninguna IA puede elimin
 
 ## 📦 REGISTRO DE CAMBIOS Y VERSIONES
 
+### Versión 1.2.0 — Animaciones Completas de Foodies (Preloader, HeroSlider & Scroll Reveal)
+- **Fecha:** 2026-10-13
+- **Preloader de Entrada:** Pantalla de carga animada con spinner neón, logotipo y transición de apertura suave hacia la web.
+- **Hero Slider Interactivo:** Carrusel con 3 diapositivas destacadas, auto-play cada 5.5s, botones de navegación anterior/siguiente, paginación táctil y sello circular 360° en rotación continua.
+- **Scroll Reveal (Efecto WOW.js):** Revelado animado de secciones, tarjetas y títulos al hacer scroll por la página usando `IntersectionObserver`.
+- **Formas Flotantes de Fondo:** Efecto parallax de elementos y formas con oscilación suave `@keyframes floatBob`.
+- **Cursor Exacto Foodies:** Anillo exterior interactivo con escala a 58px y cambio de color al posicionarse sobre botones o tarjetas.
+
 ### Versión 1.1.0 — Integración de Animaciones y Transiciones Foodies
 - **Fecha:** 2026-10-13
 - **Cursor Interactivo Personalizado:** Implementación del cursor suave reactivo con micro-efecto magnético en botones y enlaces.
